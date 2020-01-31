@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+			">
+
+	<bean id="bookServiceee" class="com.baizhi.spring.test.service.impl.BookServiceImpl"></bean>
+	<bean id="u" class="com.baizhi.spring.entity.User">
+		<property name="id"  value="12"></property>
+		<property name="username">
+			<value>admin</value>
+		</property>
+		<property name="password" value="123456a"></property>
+	</bean>
+	<!--注释-->
+	<bean id="u1" class="com.baizhi.spring.entity.User">
+		<property name="tels">
+			<list>
+				<value>123</value>
+				<value>456</value>
+				<value>789</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="u2" class="com.baizhi.spring.entity.User">
+		<property name="qqs">
+			<list>
+				<value>123</value>
+				<value>456</value>
+				<value>963</value>
+				<value>258</value>
+				<value>963</value>
+				<value>258</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="u3" class="com.baizhi.spring.entity.User">
+		<property name="emails">
+			<set>
+				<value>11@qq.com</value>
+				<value>22@qq.com</value>
+				<value>33@qq.com</value>
+				<value>44@qq.com</value>
+			</set>
+		</property>
+	</bean>
+
+	<bean id="u4" class="com.baizhi.spring.entity.User">
+		<property name="map">
+			<map>
+				<entry key="a" value="12121212123"></entry>
+				<entry key="b" value="45678978988"></entry>
+			</map>
+		</property>
+	</bean>
+	<bean class="com.baizhi.spring.dao.impl.UserDaoImpl" id="userDao"></bean>
+	<bean class="com.baizhi.spring.service.impl.UserServiceImpl" id="userService" autowire="byName"></bean>
+	<!--<bean class="com.baizhi.spring.service.impl.UserServiceImpl" id="userDao">
+		<property name="userDao">
+			<ref bean="userDao"></ref>
+		</property>
+	</bean>-->
+</beans>

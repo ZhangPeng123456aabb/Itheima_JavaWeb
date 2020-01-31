@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="AjaxDay01:war exploded2">
+    <output-path>$PROJECT_DIR$/out/artifacts/AjaxDay01_war_exploded2</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="AjaxDay01/web/Web" />
+    </root>
+  </artifact>
+</component>

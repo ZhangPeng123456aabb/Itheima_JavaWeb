@@ -1,0 +1,6 @@
+
+V
+squid:S106"9Replace this use of System.out or System.err by a logger.(œÍò‚8ºš·ğÃ-
+nsquid:UselessImportCheck"CRemove this unused import 'com.baizhi.spring.dao.impl.UserDaoImpl'.(êÄ ï8äá‡Å-
+jsquid:UselessImportCheck":Remove this unused import 'com.baizhi.spring.entity.User'.(šñ¿ëÿÿÿÿÿ8ÆóîˆÅ-
+msquid:UselessImportCheck"BRemove this unused import 'com.baizhi.spring.service.UserService'.(»ÙÑ¤8‰÷á‡Å-

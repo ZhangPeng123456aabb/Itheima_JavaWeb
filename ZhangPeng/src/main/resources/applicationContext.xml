@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	    xmlns:aop="http://www.springframework.org/schema/aop"
+	    xmlns:context="http://www.springframework.org/schema/context"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+			http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		">
+	<!--1.加载jdbc.properties-->
+	<!--1.通过context标签====需要添加context标签的命名-->
+	<context:property-placeholder location="jdbc.properties"></context:property-placeholder>
+	<!--2.通过key获取到value-->
+	<bean class="com.baizhi.spring.util.MyConnection" id="myConnection">
+		<property name="driverClassName" value="${jdbc.driver}"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+	<!--UserServiceImpl userService = new UserServiceImpl();-->
+	<!--让spring创建对象，通过spring的bean标签完成-->
+	<!--class属性写的是类全限定名
+	id属性写的是创建出来的对象的名字-->
+	<bean class="com.baizhi.spring.service.impl.UserServiceImpl" id="userService"></bean>
+	<bean class="com.baizhi.spring.entity.User" id="listUser">
+		<property name="list">
+			<list>
+				<value>1213</value>
+				<value>1478</value>
+				<value>5874</value>
+			</list>
+		</property>
+	</bean>
+	<bean class="com.baizhi.spring.entity.User" id="u1">
+			<property name="map">
+				<map>
+					<entry key="1" value="jshf"></entry>
+					<entry key="2" value="陈鑫"></entry>
+					<entry key="3" value="张朋"></entry>
+					<entry key="4" value="陈鑫"></entry>
+				</map>
+			</property>
+	</bean>
+	<bean class="com.baizhi.spring.entity.User" id="properties">
+		<property name="properties">
+			<props>
+				<prop key="1">你好年后</prop>
+				<prop key="2">你好年后</prop>
+				<prop key="3">你好年后</prop>
+				<prop key="4">你好年后</prop>
+				<prop key="4">你好</prop>
+			</props>
+		</property>
+	</bean>
+	<bean class="com.baizhi.spring.entity.person" id="u3">
+		<constructor-arg value="123456" type="java.lang.Integer"></constructor-arg>
+		<constructor-arg value="张国庆"></constructor-arg>
+		<constructor-arg value="123456"></constructor-arg>
+	</bean>
+
+	<bean id="myTxAdvice" class="com.baizhi.spring.advice.MyTxAdvice"></bean>
+	<bean id="myLogAdvice" class="com.baizhi.spring.advice.MyLogAdvice"></bean>
+	<bean id="myAfterReturningAdvice" class="com.baizhi.spring.advice.MyAfterReturningAdvice"></bean>
+	<bean id="myThrowsAdvice"  class="com.baizhi.spring.advice.myThrowsAdvice"></bean>
+	<bean id="myMethodInterceptor" class="com.baizhi.spring.advice.MyMethodInterceptor"></bean>
+	<aop:config>
+		<!--<aop:pointcut id="myPointcut" expression="execution(* com.baizhi.spring.service.*.*(..))"/>-->
+		<!--<aop:pointcut id="myPointcut" expression="args(java.lang.String)"/>-->
+		<!--<aop:pointcut id="myPointcut1" expression="within(com.baizhi.spring.service..*)"/>-->
+		<!--<aop:pointcut id="myPointcut2" expression="@annotation(com.baizhi.spring.util.Log) or args(java.lang.String)"/>-->
+		<aop:pointcut id="myPointcut2" expression="@annotation(com.baizhi.spring.util.Log) and args(java.lang.String)"/>
+		<!--<aop:advisor advice-ref="myTxAdvice" pointcut-ref="myPointcut"/>
+		<aop:advisor advice-ref="myLogAdvice" pointcut-ref="myPointcut"/>
+		<aop:advisor advice-ref="myAfterReturningAdvice" pointcut-ref="myPointcut"/>
+		<aop:advisor advice-ref="myThrowsAdvice" pointcut-ref="myPointcut"/>-->
+		<aop:advisor advice-ref="myMethodInterceptor" pointcut-ref="myPointcut2"></aop:advisor>
+	</aop:config>
+</beans>
